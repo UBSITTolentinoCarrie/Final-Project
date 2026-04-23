@@ -1,0 +1,19 @@
+<main>
+  <h2>My Orders</h2>
+
+  @for(order of orderService.orderList(); track order._id) {
+    <div class="card">
+      <h3>Order #{{ order._id }}</h3>
+      <p>Status: {{ order.status }}</p>
+      <p>Total: P{{ order.totalAmount }}</p>
+      <p>Date: {{ order.createdAt | date }}</p>
+      <p>Ship to: {{ order.shippingAddress.fullName }}, {{ order.shippingAddress.city }}</p>
+      <hr>
+      @for(item of order.items; track item.productId) {
+        <p>{{ item.productName }} x{{ item.quantity }} - P{{ item.price * item.quantity }}</p>
+      }
+    </div>
+  } @empty {
+    <p>No orders yet.</p>
+  }
+</main>

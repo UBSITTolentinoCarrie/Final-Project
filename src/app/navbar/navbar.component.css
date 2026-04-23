@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #C68642;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  justify-content: center;
+}
+
+nav p {
+  margin: 0;
+}
+
+nav button {
+  background-color: #FFF5E4;
+  color: #3E2723;
+  border: 2px solid #3E2723;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  margin: 0;
+}
+
+nav button:hover {
+  background-color: #3E2723;
+  color: #FFF5E4;
+}
+
+nav button a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+}

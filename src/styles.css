@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #FFF5E4;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+  color: #3E2723;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  color: #C68642;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1em;
+  color: #3E2723;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #C68642;
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: #FFF5E4;
+  color: #3E2723;
+}
+
+input:focus {
+  outline: none;
+  border-color: #A8C5A0;
+  box-shadow: 0 0 8px rgba(168, 197, 160, 0.5);
+}
+
+button {
+  background-color: #C68642;
+  color: #FFF5E4;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #3E2723;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #C68642;
+  margin: 20px 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

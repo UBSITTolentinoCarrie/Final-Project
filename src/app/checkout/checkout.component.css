@@ -1,0 +1,23 @@
+main {
+  padding: 20px;
+}
+
+h3 {
+  color: #C68642;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #3E2723;
+  font-size: 1em;
+  margin-bottom: 6px;
+}
+
+form {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(198, 134, 66, 0.2);
+  border-left: 6px solid #A8C5A0;
+  margin-top: 16px;
+}

@@ -1,0 +1,25 @@
+<main>
+  <h2>Checkout</h2>
+
+  <h3>Order Summary</h3>
+  @for(item of cartService.cartItems(); track item._id) {
+    <div class="card">
+      <h3>{{ item.productName }}</h3>
+      <p>Qty: {{ item.quantity }}</p>
+      <p>Subtotal: P{{ item.price * item.quantity }}</p>
+    </div>
+  }
+  <p>Total: P{{ cartService.cartTotal() }}</p>
+
+  <hr>
+  <h3>Shipping Address</h3>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <input formControlName="fullName" placeholder="Full Name">
+    <input formControlName="street" placeholder="Street Address">
+    <input formControlName="city" placeholder="City">
+    <input formControlName="zipCode" placeholder="Zip Code">
+    <input formControlName="country" placeholder="Country">
+    <button type="submit" [disabled]="!checkoutForm.valid">Place Order</button>
+  </form>
+</main>

@@ -1,0 +1,108 @@
+/* cart.component.css */
+/* Date: May 11, 2025 */
+/* Assignment: E-Commerce Platform - Capy & Co. */
+
+main {
+  padding: 20px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid #A8C5A0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(168, 197, 160, 0.3);
+}
+
+.cart-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.no-img {
+  width: 100%;
+  height: 160px;
+  background-color: #FFF5E4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  color: #C68642;
+  margin-bottom: 6px;
+}
+
+.card p {
+  color: #3E2723;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+
+.btn-remove {
+  background-color: #E8A0A0;
+  color: #3E2723;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85em;
+  margin-top: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-remove:hover {
+  background-color: #3E2723;
+  color: #FFF5E4;
+}
+
+.cart-summary {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(198, 134, 66, 0.2);
+  border-left: 6px solid #C68642;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-summary h3 {
+  color: #3E2723;
+  font-size: 1.4em;
+}
+
+.btn-checkout {
+  background-color: #C68642;
+  color: #FFF5E4;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+  margin: 0;
+}
+
+.btn-checkout:hover {
+  background-color: #3E2723;
+}
