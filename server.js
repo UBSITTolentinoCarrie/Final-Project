@@ -1,3 +1,7 @@
+// server.js
+// Date: May 11, 2025
+// Assignment: E-Commerce Platform - Capy & Co.
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -7,7 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
@@ -42,56 +48,96 @@ const Order = mongoose.model('order', new mongoose.Schema({
 
 // ---- PRODUCT ROUTES ----
 app.get('/api/products', async (req, res) => {
-    const products = await Product.find();
-    res.send(products);
+    try {
+        const products = await Product.find();
+        res.send(products);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to fetch products' });
+    }
 });
 
 app.post('/api/products', async (req, res) => {
-    const product = new Product(req.body);
-    await product.save();
-    res.status(201).send(product);
+    try {
+        const product = new Product(req.body);
+        await product.save();
+        res.status(201).send(product);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to save product' });
+    }
 });
 
 app.put('/api/products/:id', async (req, res) => {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.send(product);
+    try {
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.send(product);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to update product' });
+    }
 });
 
 app.delete('/api/products/:id', async (req, res) => {
-    await Product.findByIdAndDelete(req.params.id);
-    res.send({ message: 'Product deleted successfully' });
+    try {
+        await Product.findByIdAndDelete(req.params.id);
+        res.send({ message: 'Product deleted successfully' });
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to delete product' });
+    }
 });
 
 // ---- CART ROUTES ----
 app.get('/api/cart', async (req, res) => {
-    const cart = await Cart.find();
-    res.send(cart);
+    try {
+        const cart = await Cart.find();
+        res.send(cart);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to fetch cart' });
+    }
 });
 
 app.post('/api/cart', async (req, res) => {
-    const item = new Cart(req.body);
-    await item.save();
-    res.status(201).send(item);
+    try {
+        const item = new Cart(req.body);
+        await item.save();
+        res.status(201).send(item);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to add to cart' });
+    }
 });
 
 app.put('/api/cart/:id', async (req, res) => {
-    const item = await Cart.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.send(item);
+    try {
+        const item = await Cart.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.send(item);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to update cart item' });
+    }
 });
 
 app.delete('/api/cart/:id', async (req, res) => {
-    await Cart.findByIdAndDelete(req.params.id);
-    res.send({ message: 'Item removed from cart' });
+    try {
+        await Cart.findByIdAndDelete(req.params.id);
+        res.send({ message: 'Item removed from cart' });
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to remove cart item' });
+    }
 });
 
 // ---- ORDER ROUTES ----
 app.get('/api/orders', async (req, res) => {
-    const orders = await Order.find();
-    res.send(orders);
+    try {
+        const orders = await Order.find();
+        res.send(orders);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to fetch orders' });
+    }
 });
 
 app.post('/api/orders', async (req, res) => {
-    const order = new Order(req.body);
-    await order.save();
-    res.status(201).send(order);
+    try {
+        const order = new Order(req.body);
+        await order.save();
+        res.status(201).send(order);
+    } catch (err) {
+        res.status(500).send({ message: 'Failed to place order' });
+    }
 });

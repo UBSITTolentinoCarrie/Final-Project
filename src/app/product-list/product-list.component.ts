@@ -1,5 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ProductService } from '../product.service';
 import { CartService } from '../cart.service';
 
@@ -11,6 +12,7 @@ import { CartService } from '../cart.service';
 })
 export class ProductListComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
+  private sanitizer = inject(DomSanitizer);
   productService = inject(ProductService);
   cartService = inject(CartService);
   editId = signal<string | null>(null);
@@ -27,6 +29,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.productService.fetchProducts();
+  }
+
+  getSafeUrl(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   onSubmit() {
