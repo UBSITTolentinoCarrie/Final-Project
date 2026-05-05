@@ -1,43 +1,29 @@
 <main>
-  <h2>{{ editId() ? 'Edit Product' : 'Add Product' }}</h2>
+  <h2>Shop</h2>
+  <div class="filter">
+    <button (click)="filterCategory('All')">All</button>
+    <button (click)="filterCategory('Accessories')">Accessories</button>
+    <button (click)="filterCategory('School Supplies')">School Supplies</button>
+  </div>
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <input formControlName="name" placeholder="Product Name">
-    <input formControlName="description" placeholder="Description">
-    <input formControlName="price" type="number" placeholder="Price">
-    <input formControlName="stock" type="number" placeholder="Stock">
-    <input formControlName="category" placeholder="Category">
-    <input formControlName="tag" placeholder="Tag (bestseller / new)">
-    <input formControlName="image" placeholder="Image URL">
-    <button type="submit" [disabled]="!productForm.valid">
-      {{ editId() ? 'Update Product' : 'Add Product' }}
-    </button>
-    @if(editId()) {
-      <button type="button" (click)="cancelEdit()">Cancel</button>
+  <div class="card-grid">
+    @for(p of filteredProducts(); track p._id) {
+      <div class="card">
+        @if(p.image) {
+          <img [src]="getSafeUrl(p.image)" [alt]="p.name" class="product-img">
+        }
+        @if(p.tag) {
+          <span class="tag">{{ p.tag }}</span>
+        }
+        <h3>{{ p.name }}</h3>
+        <p>{{ p.description }}</p>
+        <p>Price: ₱{{ p.price }}</p>
+        <p>Stock: {{ p.stock }}</p>
+        <p>Category: {{ p.category }}</p>
+        <button (click)="addToCart(p)">Add to Cart</button>
+      </div>
+    } @empty {
+      <p>No products available yet.</p>
     }
-  </form>
-
-  <hr>
-  <h3>Products</h3>
-
-  @for(p of productService.productList(); track p._id) {
-    <div class="card">
-      @if(p.image) {
-        <img [src]="getSafeUrl(p.image)" [alt]="p.name" class="product-img">
-      }
-      @if(p.tag) {
-        <span class="tag">{{ p.tag }}</span>
-      }
-      <h3>{{ p.name }}</h3>
-      <p>{{ p.description }}</p>
-      <p>Price: ₱{{ p.price }}</p>
-      <p>Stock: {{ p.stock }}</p>
-      <p>Category: {{ p.category }}</p>
-      <button (click)="addToCart(p)">Add to Cart</button>
-      <button (click)="startEdit(p)">Edit</button>
-      <button (click)="deleteProduct(p._id)">Delete</button>
-    </div>
-  } @empty {
-    <p>No products yet.</p>
-  }
+  </div>
 </main>

@@ -1,0 +1,36 @@
+<main>
+  <h2>{{ editId() ? 'Edit Product' : 'Add Product' }}</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <input formControlName="name" placeholder="Product Name">
+    <input formControlName="description" placeholder="Description">
+    <input formControlName="price" type="number" placeholder="Price">
+    <input formControlName="stock" type="number" placeholder="Stock">
+    <input formControlName="category" placeholder="Category">
+    <input formControlName="tag" placeholder="Tag (bestseller / new)">
+    <input formControlName="image" placeholder="Image URL">
+    <button type="submit" [disabled]="!productForm.valid">
+      {{ editId() ? 'Update Product' : 'Add Product' }}
+    </button>
+    @if(editId()) {
+      <button type="button" (click)="cancelEdit()">Cancel</button>
+    }
+  </form>
+
+  <hr>
+  <h3>All Products</h3>
+  <div class="card-grid">
+    @for(p of productService.productList(); track p._id) {
+      <div class="card">
+        <h3>{{ p.name }}</h3>
+        <p>{{ p.description }}</p>
+        <p>Price: ₱{{ p.price }}</p>
+        <p>Stock: {{ p.stock }}</p>
+        <p>Category: {{ p.category }}</p>
+        <button (click)="startEdit(p)">Edit</button>
+        <button (click)="deleteProduct(p._id)">Delete</button>
+      </div>
+    } @empty {
+      <p>No products yet.</p>
+    }
+  </div>
+</main>
