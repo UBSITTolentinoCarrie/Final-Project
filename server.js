@@ -1,7 +1,3 @@
-// server.js
-// Date: May 11, 2025
-// Assignment: E-Commerce Platform - Capy & Co.
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
